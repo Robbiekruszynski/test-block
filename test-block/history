@@ -1,0 +1,16 @@
+web3
+eth.accounts
+eth.getBalance(eth.accounts[0])
+miner.start()
+miner.stop()
+eth.getBalance(eth.accounts[0])
+eth.sendTransaction()
+eth.sendTransaction()eth.sendTrnsaction({to: eth.accounts[1], from: eth.accounts[0], value:500})
+> eth.sendTransaction({to: eth.accounts[1], from: eth.accounts[0], value: 100})
+eth.sendTransaction({to: eth.accounts[1], from: eth.accounts[0], value: 100})
+eth.sendTransaction({to: eth.accounts[1], from: eth.accounts[0], value: 500})
+eth.getBlanace(eth.accounts[1])
+eth.getBalance(eth.accounts[1])
+miner.start()
+miner.stop()
+eth.getBalance(eth.accounts[1])

@@ -1,0 +1,40 @@
+
+So what's in this genesis file?
+
+The config section defines the settings for the private blockchain.
+
+The chainId identifies the blockchain. The Ethereum main net has a chainId of 1. The Ropsten testnet has a chainId of 3, Rinkeby is 4 and Kovan is 42. This genesis file has a chainId of 4568, hopefully nobody else is running a chain with the same chainId. We can use the same client to connect to all of the different Ethereum networks.
+
+The Ethereum protocol has hard forked and introduced several backward-incompatible protocol changes. homesteadBlock and eip155/8Block indicate to geth in which blocks the changes are introduced. We set these to zero.
+
+alloc allows us to create addresses and fill the accounts with ether upon initializing the blockchain. We will leave this empty and mine ether to fill our accounts.
+
+Difficulty indicates how difficult it will be to discover a valid hash of the block. It defines the mining target, which can be calculated from the previous block's difficulty level and the timestamp. The higher the difficulty, the more calculations the miner will have to do to find a block (on average). This value fluctuates to maintain a target block generation time (~15 seconds in Ethereum). We keep this value low on our private chain so we can quickly find blocks so we don't have to wait.
+
+extraData is an optional 32 byte value where we can add anything.
+
+gasLimit is a value that sets the chain-wide limit of gas expenditure per block. We set the value to 8,000,000 as that is the current limit on the main net.
+
+parentHash is the keccak256 hash of the parent block's header. This pointer to the parent block builds the chain of blocks.
+
+timestamp is the output of Unix time() function at the block's creation. This parameter is used to determine if the difficulty level should be adjust to maintain a consistent average block time. It also allows us to verify the order of the blocks in the chain.
+
+Then we need to initialize the geth node with the custom genesis file.
+
+
+
+{
+  from: String - The address for the sending account. Uses the web3.eth.defaultAccount property, if not specified.
+
+  to: String - (optional) The destination address of the message, left undefined for a contract-creation transaction.
+
+  value: Number|String|BigNumber - (optional) The value transferred for the transaction in Wei, also the endowment if it's a contract-creation transaction.
+
+  gas: Number|String|BigNumber - (optional, default: To-Be-Determined) The amount of gas to use for the transaction (unused gas is refunded).
+
+  gasPrice: Number|String|BigNumber - (optional, default: To-Be-Determined) The price of gas for this transaction in wei, defaults to the mean network gas price.
+
+  data: String - (optional) Either a byte string containing the associated data of the message, or in the case of a contract-creation transaction, the initialisation code.
+
+  nonce: Number - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
+}
